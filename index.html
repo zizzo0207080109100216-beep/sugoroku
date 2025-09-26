@@ -1,0 +1,61 @@
+<h1 class="game-title">AED救助すごろく (複数対戦版)</h1>
+
+<div id="player-setup">
+    <h2>プレイヤー設定</h2>
+    <label for="num-players">プレイヤー数 (1〜4):</label>
+    <input type="number" id="num-players" value="1" min="1" max="4"> 
+    
+    <div id="player-inputs">
+        </div>
+    
+    <button id="start-game-btn">ゲーム開始</button>
+</div>
+
+<div id="game-board" class="game-container">
+    <div id="turn-indicator"></div>
+    <div class="board" id="sugoroku-board">
+        <div class="cell start" data-info="あなたのAED救命士としての冒険が始まります。">スタート<div class="cell-label">1</div></div>
+        <div class="cell action" data-info="倒れている人を見つけました！まず声をかけて反応を確認しましょう。">倒れている人を発見！<div class="cell-label">2</div></div>
+        <div class="cell quiz" data-info="周囲の安全確認は、救命処置を始める上で最も重要です。自分や周りの人が危険にさらされないようにしましょう。">クイズ！<br>周囲の安全確認は？<div class="cell-label">3</div></div>
+        <div class="cell card" data-info="アイテムカードを引いて、今後の救命活動に役立てよう！">カードチャンス！<div class="cell-label">4</div></div>
+        <div class="cell event" data-info="周りに助けを求めたら、だれもいなかった！この場でできる最善を尽くそう。">イベント！<br>誰もいない…<div class="cell-label">5</div></div>
+        <div class="cell action" data-info="協力者を見つけたら、「あなたが119番通報を！」「あなたがAEDを持ってきてください！」と具体的に指示しましょう。">119番通報とAEDを依頼！<div class="cell-label">6</div></div>
+        <div class="cell action" data-info="胸や腹の動きを見て呼吸があるか確認します。10秒以上かけてしっかり見ましょう。">呼吸の確認！<div class="cell-label">7</div></div>
+        <div class="cell action" data-info="呼吸がない場合は、心肺蘇生（胸骨圧迫）を開始します。強く、速く、絶え間なく押しましょう。">胸骨圧迫を開始！<div class="cell-label">8</div></div>
+        <div class="cell quiz" data-info="AEDが到着したら、迷わず電源を入れましょう。その後の操作はAEDが音声でガイドしてくれます。">クイズ！<br>AEDが到着！すべきことは？<div class="cell-label">9</div></div>
+        <div class="cell card" data-info="アイテムカードを引いて、今後の救命活動に役立てよう！">カードチャンス！<div class="cell-label">10</div></div>
+        <div class="cell event" data-info="緊張してしまい、手元が狂ってしまいました。">イベント！<br>焦ってしまった<div class="cell-label">11</div></div>
+        <div class="cell action" data-info="AEDの音声ガイドに従い、「離れてください！」と周りに大きな声で伝えます。">「体に触れないでください」<div class="cell-label">12</div></div>
+        <div class="cell quiz" data-info="AEDが「電気ショックが必要です」と音声ガイドしたら、周りに大きな声で「離れて！」と伝え、誰も触れていないことを確認してからショックボタンを押します。">クイズ！<br>電気ショックが必要な時は？<div class="cell-label">13</div></div>
+        <div class="cell action" data-info="ショックボタンを押す際は、誰も患者に触れていないことを確認してから押しましょう。">電気ショックボタンを押す！<div class="cell-label">14</div></div>
+        <div class="cell quiz" data-info="電気ショック後、すぐに胸骨圧迫を再開することが、救命率を上げるために最も重要です。">クイズ！<br>ショック後すぐにすることは？<div class="cell-label">15</div></div>
+        <div class="cell card" data-info="アイテムカードを引いて、今後の救命活動に役立てよう！">カードチャンス！<div class="cell-label">16</div></div>
+        <div class="cell event" data-info="救急隊が到着しました。これまでの状況を正確に伝えましょう。">救急隊到着！<div class="cell-label">17</div></div>
+        <div class="cell action" data-info="救急隊が処置を引き継いでくれるまで、協力して救命活動を続けましょう。">救急隊に引き継ぐ！<div class="cell-label">18</div></div>
+        <div class="cell quiz" data-info="救急隊が到着し処置を引き継いでくれる、または傷病者の呼吸・意識が回復するまでは、心肺蘇生を中断してはいけません。">クイズ！<br>心肺蘇生を中断していい時は？<div class="cell-label">19</div></div>
+        <div class="cell action" data-info="119番通報で伝えた内容や、これまでの処置を簡潔に正確に伝えます。">状況を正確に伝えよう<div class="cell-label">20</div></div>
+        <div class="cell event" data-info="急いでAEDを運んだら、落としてしまった！">イベント！<br>AEDを落とした<div class="cell-label">21</div></div>
+        <div class="cell card" data-info="アイテムカードを引いて、今後の救命活動に役立てよう！">カードチャンス！<div class="cell-label">22</div></div>
+        <div class="cell quiz" data-info="AEDのAはAutomated（自動化された）の略です。AEDは心臓の電気的な異常を自動的に解析します。">クイズ！<br>AEDのAは何の略？<div class="cell-label">23</div></div>
+        <div class="cell action" data-info="救急隊が来るまで決して諦めず、最善を尽くしましょう。">助けを待つ<div class="cell-label">24</div></div>
+        
+        <div class="cell goal" data-info="おめでとうございます！あなたは勇気あるバイスタンダー（救急現場に居合わせた人）として、人命救助に貢献しました！この経験を活かし、ぜひ救命講習なども受講して知識を深めてください！">ゴール！<div class="cell-label">25</div></div>
+        
+        </div>
+
+    <div id="inventory-board">
+        <h3>所持アイテムカード:</h3>
+        <div id="card-list">
+            </div>
+    </div>
+
+    <div class="controls">
+        <div class="dice-area">
+            <button id="roll-dice">サイコロを振る</button>
+            <div id="dice"></div>
+        </div>
+    </div>
+</div>
+<div id="message-board">
+    <p>プレイヤー数を設定して「ゲーム開始」ボタンを押してください。</p>
+</div>

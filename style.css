@@ -1,0 +1,286 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f8ff;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.game-title {
+    font-size: 2.5em;
+    color: #006400;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.game-container {
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+}
+
+/* --- プレイヤー設定画面 --- */
+#player-setup {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    text-align: left;
+    margin: 20px 0;
+}
+#player-setup h2 {
+    margin-top: 0;
+    color: #006400;
+    text-align: center;
+}
+#player-setup label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+#player-setup input[type="number"], #player-setup input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#player-inputs div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+#player-inputs input[type="text"] {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+#player-inputs .player-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+#start-game-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 1.1em;
+    background-color: #008000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --- ゲームボード --- */
+#game-board { display: none; } /* 初期状態は非表示 */
+#message-board { display: none; } /* 初期状態は非表示 */
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    border: 3px solid #004d00;
+    padding: 10px;
+    background-color: #e6ffe6;
+    position: relative;
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #90ee90;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.8em;
+    background-color: #c8e6c9;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+}
+
+.cell-label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 0.7em;
+    color: #555;
+}
+
+.start { background-color: #aaffaa; }
+.quiz { background-color: #add8e6; }
+.action { background-color: #fffacd; }
+.event { background-color: #ffc0cb; }
+.card { background-color: #ffd700; }
+.goal { background-color: #ff6347; }
+
+.player-token {
+    width: 20px; 
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.2s linear;
+    z-index: 10;
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.dice-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#roll-dice {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #008000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#roll-dice:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#dice {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #333;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#dice.rolling { animation: shake 0.5s infinite; }
+@keyframes shake {
+    0% { transform: rotate(0deg); } 25% { transform: rotate(5deg); }
+    50% { transform: rotate(0deg); } 75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.dice-dot {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+}
+
+#message-board {
+    margin-top: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    width: 80%;
+    min-height: 50px;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+
+#message-board p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+#turn-indicator {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffcc00; 
+    text-align: center;
+}
+
+#inventory-board {
+    background-color: #fff;
+    border: 2px solid #333;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80%;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#inventory-board h3 {
+    margin: 0 0 10px 0;
+    color: #006400;
+    font-size: 1.1em;
+}
+
+#card-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 20px;
+}
+
+.card-item {
+    background-color: #ffd700;
+    color: #333;
+    border: 2px solid #ccaa00;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.card-item:hover:not(:disabled) {
+    background-color: #ffeb3b;
+}
+
+.card-item:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --- レスポンシブデザイン --- */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    .game-container { width: 95%; }
+    .board { grid-template-columns: repeat(4, 1fr); }
+    .cell { font-size: 0.7em; padding: 3px; }
+    .controls { gap: 10px; }
+    .dice-area { flex-direction: column; gap: 15px; }
+    #inventory-board, #message-board { width: 95%; }
+    #roll-dice { width: 100%; padding: 10px; font-size: 1em; }
+}
